@@ -1,0 +1,18 @@
+<cg-drawer [showCloseIcon]="false" [headline]="headline" [content]="content" [footer]="footer"></cg-drawer>
+
+<ng-template #headline>
+  <cg-olb-headline [title]="'myBooking.login.problemsOverlay.headline' | transloco"></cg-olb-headline>
+</ng-template>
+
+<ng-template #content>
+  <div class="flex flex-col items-center gap-3">
+    <cg-paragraph
+      [content]="{ text: 'myBooking.login.problemsOverlay.description' | transloco, ngTemplate: 'cgParagraph' }"
+    ></cg-paragraph>
+    <cg-ccc-phone-info class="[&>div]:mb-0" [phoneNumber]="PhoneNumber.MY_BOOKING_LOGIN"></cg-ccc-phone-info>
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <cg-overlay-footer [hideSaveBtn]="true"></cg-overlay-footer>
+</ng-template>

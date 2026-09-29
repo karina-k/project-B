@@ -1,0 +1,55 @@
+@use "libs/core/ui/styles/mixins/breakpoints" as *;
+
+:host {
+  .font-weight-400 {
+    ::ng-deep h1 {
+      @apply font-normal;
+    }
+  }
+
+  .licence-plate {
+    &--login-lpn-input {
+      ::ng-deep .lpn-wrapper {
+        @apply w-full;
+
+        #license-plate-region {
+          @apply w-[35%] #{!important};
+          @apply min-w-[82px] #{!important};
+        }
+
+        #license-plate-letters {
+          @apply w-[30%] #{!important};
+          @apply min-w-[64px] #{!important};
+          @apply mr-2 #{!important};
+        }
+
+        #license-plate-numbers {
+          @apply w-[35%] #{!important};
+          @apply min-w-[98px] #{!important};
+        }
+      }
+
+      @include xs {
+        ::ng-deep .lpn-wrapper {
+          @apply w-64;
+
+          #license-plate-region {
+            @apply w-[30%] #{!important};
+            @apply min-w-[64px] #{!important};
+          }
+
+          #license-plate-letters {
+            @apply w-[30%] #{!important};
+            @apply min-w-[60px] #{!important};
+            @apply mr-2 #{!important};
+          }
+
+          #license-plate-numbers {
+            @apply w-[40%] #{!important};
+            @apply min-w-[80px] #{!important};
+          }
+        }
+      }
+    }
+  }
+}

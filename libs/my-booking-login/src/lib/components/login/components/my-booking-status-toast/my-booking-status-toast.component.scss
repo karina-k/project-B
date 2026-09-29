@@ -1,0 +1,20 @@
+@use "libs/core/ui/styles/mixins/breakpoints" as *;
+
+:host {
+  cg-toast-popup {
+    ::ng-deep .toast {
+      @apply bg-white #{!important};
+      @apply sm:max-w-[310px] m:max-w-[345px] #{!important};
+      @apply p-[12px] #{!important};
+
+      @include touch {
+        @apply w-full #{!important};
+      }
+
+      h3 {
+        @apply leading-6 #{!important};
+        @apply text-[18px] #{!important};
+      }
+    }
+  }
+}

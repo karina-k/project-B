@@ -1,0 +1,24 @@
+<cg-toast-popup
+  class="[&>div]:w-[calc(100%-2rem)] t:[&>div]:-top-12"
+  [hasRoundBorders]="true"
+  [hideCloseIcon]="hideCloseIcon"
+  (closeClicked)="onCloseClicked()"
+>
+  <div class="flex items-center gap-4">
+    <cg-icon class="h-8 w-8" [content]="icon"></cg-icon>
+    <ng-container
+      *ngIf="
+        toastStatus === MyBookingNotificationStatus.KTCI_MAIL_DELIVERY_SUCCESS && emailAddress$ | async as emailAddress
+      "
+    >
+      <cg-headline [type]="HeadlineType.h3" [content]="headline | transloco: { emailAddress }"></cg-headline>
+    </ng-container>
+    <ng-container *ngIf="toastStatus !== MyBookingNotificationStatus.KTCI_MAIL_DELIVERY_SUCCESS">
+      <cg-headline [type]="HeadlineType.h3" [content]="headline | transloco"></cg-headline>
+    </ng-container>
+  </div>
+  <div class="flex items-start gap-4" *ngIf="message$ | async as message">
+    <cg-icon class="h-8 w-8 opacity-0" [content]="icon"></cg-icon>
+    <cg-paragraph>{{ message | transloco }}</cg-paragraph>
+  </div>
+</cg-toast-popup>

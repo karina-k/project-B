@@ -1,0 +1,29 @@
+<div class="bg-cg-gray-light-70">
+  <ng-container *ngIf="customerCaseLoaded">
+    <div class="my-0 mx-auto flex h-full max-w-[1200px] flex-col gap-6 p-6 d:py-[45px] d:px-6">
+      <ng-container *ngIf="notificationStatus$ | async as toastStatus">
+        <cg-my-booking-status-toast
+          class="fixed left-1/2 z-10 -translate-x-1/2 [&>cg-toast-popup>div]:relative"
+          [toastStatus]="toastStatus"
+        ></cg-my-booking-status-toast>
+      </ng-container>
+      <cg-my-booking-detail-header
+        [damages]="customerCase.damages"
+        [customerName]="customerCaseEditContact.name"
+        [orderNumber]="customerCase.orderNumber ?? null"
+      ></cg-my-booking-detail-header>
+      <cg-my-booking-booked-appointment [customerCase]="customerCase"></cg-my-booking-booked-appointment>
+      <cg-my-booking-booked-details
+        [damages]="damages"
+        [requiredService]="customerCaseDamage.requiredService"
+        [car]="car"
+        [customerCaseEditContact]="customerCaseEditContact"
+        [customerCaseId]="customerCaseId"
+        [appointment]="appointment"
+      >
+      </cg-my-booking-booked-details>
+      <cg-my-booking-actions [customerCase]="customerCase"></cg-my-booking-actions>
+    </div>
+  </ng-container>
+</div>
+<cg-spinner></cg-spinner>

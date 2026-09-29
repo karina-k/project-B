@@ -1,0 +1,8 @@
+<cg-base-info-overlay
+  [icon]="logoutIcon"
+  [title]="'myBooking.detail.overlays.browserBackOverlayTitle' | transloco"
+  [text]="{ text: 'myBooking.detail.overlays.browserBackOverlaySubline' | transloco, ngTemplate: 'cgParagraph' }"
+  [submitButtonTranslationKey]="'myBooking.detail.overlays.footerButtons.logout'"
+  (submitButtonClicked)="logoutButtonClicked()"
+  [hideSaveBtn]="false"
+></cg-base-info-overlay>

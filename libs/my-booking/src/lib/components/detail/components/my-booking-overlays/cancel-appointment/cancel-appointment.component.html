@@ -1,0 +1,9 @@
+<cg-base-info-overlay
+  [icon]="calendarInfoFilledIcon"
+  [phone]="PhoneNumber.MY_BOOKING_CANCEL"
+  [title]="'myBooking.detail.overlays.cancelAppointmentTitle' | transloco"
+  [text]="text"
+  [submitButtonTranslationKey]="'myBooking.detail.overlays.footerButtons.changeAppointment'"
+  (submitButtonClicked)="changeAppointment()"
+  [hideSaveBtn]="false"
+></cg-base-info-overlay>

@@ -1,0 +1,31 @@
+<cg-drawer
+  [showCloseIcon]="false"
+  [icon]="icon"
+  [headline]="headline"
+  [content]="content"
+  [footer]="footer"
+></cg-drawer>
+
+<ng-template #headline>
+  <cg-olb-headline data-cy="base-info-headline" [title]="title"></cg-olb-headline>
+</ng-template>
+
+<ng-template #content>
+  <div class="flex flex-col items-center gap-3">
+    <ng-container *ngIf="text">
+      <cg-paragraph [content]="text"></cg-paragraph>
+    </ng-container>
+    <ng-container *ngIf="phone">
+      <cg-ccc-phone-info class="[&>div]:mb-0" [phoneNumber]="phone"></cg-ccc-phone-info>
+    </ng-container>
+  </div>
+</ng-template>
+
+<ng-template #footer>
+  <cg-overlay-footer
+    [submitButtonTranslationKey]="submitButtonTranslationKey"
+    (submitButtonClicked)="emitSubmitButtonClicked()"
+    [hideSaveBtn]="hideSaveBtn"
+    [cancelCta]="cancelCta"
+  ></cg-overlay-footer>
+</ng-template>

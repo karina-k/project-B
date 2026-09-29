@@ -1,0 +1,13 @@
+@use "libs/core/ui/styles/extends/typography" as *;
+
+:host {
+  .my-booking-error {
+    &--list-element {
+      @extend %paragraph;
+    }
+
+    &--list-element:not(:first-child) {
+      @apply mt-4;
+    }
+  }
+}

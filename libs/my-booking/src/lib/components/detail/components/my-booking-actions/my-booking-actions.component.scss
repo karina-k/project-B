@@ -1,0 +1,22 @@
+:host {
+  display: block;
+
+  ::ng-deep button div {
+    @apply grow bg-cg-gray-light-70;
+
+    &:active,
+    &:hover {
+      @apply grow bg-cg-anthracite-light-80;
+    }
+
+    span {
+      @apply grow text-cg-anthracite;
+    }
+  }
+
+  .my-booking-actions--title {
+    ::ng-deep p {
+      @apply font-bold;
+    }
+  }
+}

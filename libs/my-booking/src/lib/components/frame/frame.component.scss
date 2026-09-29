@@ -1,0 +1,7 @@
+@use "libs/core/ui/styles/functions/calcrem" as *;
+
+:host {
+  cg-header {
+    box-shadow: 0 calcrem(10px) calcrem(6px) -5px rgba(0, 0, 0, 0.08);
+  }
+}

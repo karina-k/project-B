@@ -1,0 +1,56 @@
+<div class="flex flex-col" [formGroup]="form">
+  <cg-olb-headline
+    class="text-center [&>h1]:!mt-0 [&>h1]:!font-normal"
+    [type]="'h1'"
+    [title]="texts.title | transloco"
+  ></cg-olb-headline>
+
+  <cg-headline
+    *ngIf="texts.subtitle"
+    [ngClass]="{ 'text-center': isSaveAndRestore }"
+    class="mt-3 mb-2"
+    [type]="HeadlineType.h4"
+    [content]="texts.subtitle | transloco"
+  ></cg-headline>
+
+  <cg-paragraph
+    [content]="{ text: texts.description | transloco, ngTemplate: 'cgParagraph' }"
+    class="mx-auto max-w-[350px] text-center d:max-w-[320px]"
+    *ngIf="texts.description"
+  ></cg-paragraph>
+
+  <ng-container *ngIf="!isSaveAndRestore">
+    <cg-headline
+      class="mb-2 mt-4 [&>h4]:text-[13px] [&>h4]:leading-[20px]"
+      [type]="HeadlineType.h4"
+      [content]="'myBooking.login.lpnInput' | transloco"
+    ></cg-headline>
+  </ng-container>
+  <div class="flex flex-col items-center">
+    <cg-lpn-input
+      class="[&>div]:!w-full"
+      formControlName="lpn"
+      [ngClass]="{
+        'mb-6': isSaveAndRestore && (!form.touched || form.valid),
+        'licence-plate--login-lpn-input mb-2 w-full': !isSaveAndRestore
+      }"
+      (keyup.enter)="onSubmit()"
+    ></cg-lpn-input>
+
+    <cg-error-message
+      *ngIf="form.touched && form.invalid"
+      [errorMessage]="'licensePlate.licensePlate.errorMessage' | transloco"
+    ></cg-error-message>
+
+    <cg-error-message *ngIf="errorMessage" [errorMessage]="errorMessage"></cg-error-message>
+
+    <cg-cta
+      [ngClass]="{
+        '!w-full [&>div]:w-full [&>div>div>div]:text-base': !isSaveAndRestore
+      }"
+      [content]="lpnCta"
+      (clickedFn)="onSubmit()"
+      data-cy="my-booking-license-plate-submit-button"
+    ></cg-cta>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+/* eslint-disable */
+export default {
+  displayName: "my-booking-login",
+  preset: "../../jest.preset.js",
+  setupFilesAfterEnv: ["<rootDir>/src/test-setup.ts"],
+  globals: {
+    "ts-jest": {
+      tsconfig: "<rootDir>/tsconfig.spec.json",
+      isolatedModules: true,
+      stringifyContentPathRegex: "\\.(html|svg)$"
+    }
+  },
+  coverageDirectory: "../../coverage/libs/my-booking-login",
+  transform: {
+    "^.+.(ts|mjs|js|html)$": "jest-preset-angular"
+  },
+  transformIgnorePatterns: ["node_modules/(?!.*.mjs$|@cg)"],
+  snapshotSerializers: [
+    "jest-preset-angular/build/serializers/no-ng-attributes",
+    "jest-preset-angular/build/serializers/ng-snapshot",
+    "jest-preset-angular/build/serializers/html-comment"
+  ]
+};

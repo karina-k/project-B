@@ -1,0 +1,61 @@
+<ng-container *ngIf="notificationStatus$ | async as status">
+  <cg-my-booking-status-toast [toastStatus]="status" (closeClicked)="closeToast()"></cg-my-booking-status-toast>
+</ng-container>
+
+<ng-container *ngIf="{ isKtciContent: isKtciContent$ | async } as data">
+  <div
+    class="relative w:mx-12"
+    [ngClass]="{
+      '!pb-[618px] m:!pb-[603px] t:!pb-[591px] d:!pb-[702px] w:!pb-[710px] fhd:!pb-[710px]': data.isKtciContent,
+      'pb-[518px] m:pb-[545px] t:pb-[661px] d:pb-[515px] w:pb-[558px] fhd:pb-[612px] ': isSaveAndRestore,
+      'pb-[581px] m:pb-[566px] t:pb-[554px] d:pb-[681px] w:pb-[689px]': !isSaveAndRestore
+    }"
+  >
+    <div
+      class="absolute inset-y-0 left-1/2 w-full max-w-[75rem] -translate-x-1/2"
+      [ngClass]="{
+        'flex flex-col items-center': isSaveAndRestore
+      }"
+    >
+      <cg-picture
+        [ngClass]="{
+          'absolute top-0 left-0 right-0 w:-left-12 w:-right-12 [&>picture>img]:h-[240px] [&>picture>img]:w-screen [&>picture>img]:object-cover d:[&>picture>img]:h-[400px]':
+            !isSaveAndRestore
+        }"
+        [content]="imageContent"
+      ></cg-picture>
+      <div
+        class="p-4 d:px-12 d:pt-6 d:pb-8"
+        [ngClass]="{
+          'top-[140px] m:top-[142px]  t:top-[162px]  d:top-[240px]': data.isKtciContent,
+          'flex flex-col items-center': isSaveAndRestore,
+          'absolute left-1/2 top-[180px] flex w-[calc(100%-1rem)] -translate-x-1/2 flex-col items-center rounded-lg bg-cg-white shadow-card m:top-[165px] m:w-[calc(100%-2rem)] t:top-[177px] t:w-[calc(100%-3rem)] d:top-[240px] d:w-[432px]':
+            !isSaveAndRestore
+        }"
+      >
+        <ng-container *ngIf="!data.isKtciContent">
+          <cg-license-plate class="w-full" [resumeId]="resumeId"></cg-license-plate>
+        </ng-container>
+        <ng-container *ngIf="data.isKtciContent">
+          <cg-verification-code class="w-full" [resumeId]="resumeId"></cg-verification-code>
+        </ng-container>
+
+        <div class="-mx-4 mt-4 flex flex-col items-center gap-4" [ngClass]="{ 'd:mt-6': data.isKtciContent }">
+          <a
+            class="text-[14px] text-cg-anthracite underline"
+            data-cy="my-booking-login-problems-link"
+            (click)="openLoginProblemsOverlay()"
+            >{{ "myBooking.login.passwordForgot" | transloco }}</a
+          >
+          <a
+            *ngIf="isKtciContent$ | async"
+            class="text-[14px] text-cg-anthracite underline"
+            (click)="sendKtciMailAgain()"
+            data-cy="my-booking-login-send-ktci-again-link"
+            >{{ "myBooking.login.sendKtciCodeAgain" | transloco }}</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

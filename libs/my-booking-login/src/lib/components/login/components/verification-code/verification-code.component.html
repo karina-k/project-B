@@ -1,0 +1,43 @@
+<div class="flex flex-col" [formGroup]="form">
+  <cg-olb-headline
+    class="text-center [&>h1]:!mt-0 [&>h1]:!font-normal"
+    [type]="'h1'"
+    [title]="texts.title | transloco"
+  ></cg-olb-headline>
+
+  <cg-headline
+    *ngIf="texts.subtitle"
+    class="mt-3 mb-2"
+    [type]="HeadlineType.h4"
+    [content]="texts.subtitle | transloco"
+  ></cg-headline>
+
+  <ng-container *ngIf="{ recipientEmail: recipientEmail$ | async } as data">
+    <cg-paragraph
+      class="mx-auto max-w-[250px] text-center t:max-w-[325px]"
+      [content]="{ text: texts.description | transloco: { email: data.recipientEmail }, ngTemplate: 'cgParagraph' }"
+    ></cg-paragraph>
+  </ng-container>
+
+  <cg-headline
+    class="mb-2 mt-4 [&>h4]:text-[13px] [&>h4]:leading-[20px]"
+    [type]="HeadlineType.h4"
+    [content]="'myBooking.login.loginKtciInput' | transloco"
+  ></cg-headline>
+  <div class="flex flex-col items-center">
+    <cg-text-input
+      class="mb-2 w-full d:w-auto"
+      [formControlName]="'ktci'"
+      [content]="ktciInput"
+      (keyup.enter)="onSubmit()"
+      [isInputTrimmed]="true"
+    ></cg-text-input>
+
+    <cg-cta
+      class="!w-full [&>div]:w-full [&>div>div>div]:text-base"
+      [content]="lpnCta"
+      (clickedFn)="onSubmit()"
+      data-cy="my-booking-verification-code-submit-button"
+    ></cg-cta>
+  </div>
+</div>

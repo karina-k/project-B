@@ -1,0 +1,41 @@
+<div class="flex flex-col-reverse justify-start d:mb-6 d:flex-row d:justify-between">
+  <cg-headline
+    class="mb-6 mt-4 d:mt-0 d:mb-0 [&>h1]:text-[35px] d:[&>h1]:text-[56px]"
+    [type]="HeadlineType.h1"
+    [content]="'myBooking.detail.greeting' | transloco"
+  ></cg-headline>
+  <div class="flex items-end gap-1.5 d:flex-col d:gap-0">
+    <cg-paragraph
+      [content]="{
+        text: 'myBooking.detail.mybooking' | transloco,
+        ngTemplate: 'cgParagraph'
+      }"
+    ></cg-paragraph>
+    <cg-paragraph data-cs-mask [attr.data-cy]="'my-booking-detail-header-customer-name'">{{
+      customerName
+    }}</cg-paragraph>
+  </div>
+</div>
+<cg-round-corner-tile [backgroundColorClass]="'bg-cg-green'">
+  <div class="flex items-center gap-6 px-6 py-4 d:px-8 d:py-6">
+    <cg-icon [content]="confirmedIcon" class="h-9 w-9 [&>mat-icon>svg>path]:fill-cg-white"></cg-icon>
+    <div class="flex w-full flex-col">
+      <cg-headline
+        data-cy="headline-appointment-booked"
+        class="pb-1 [&>h3]:text-[22px] [&>h3]:text-cg-white t:[&>h3]:text-[30px]"
+        [type]="HeadlineType.h3"
+        [content]="'myBooking.detail.appointmentBooked' | transloco"
+      ></cg-headline>
+      <div class="flex flex-col justify-start gap-1 d:flex-row d:justify-between d:gap-0">
+        <cg-paragraph
+          class="[&>p]:text-cg-white"
+          [attr.data-cy]="'my-booking-detail-header-damage-type-description'"
+          >{{ damageTypeDescription$ | async }}</cg-paragraph
+        >
+        <ng-container *ngIf="orderNumber">
+          <cg-paragraph class="[&>p]:text-cg-white" data-cs-mask>{{ orderNumberInfo$ | async }}</cg-paragraph>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</cg-round-corner-tile>

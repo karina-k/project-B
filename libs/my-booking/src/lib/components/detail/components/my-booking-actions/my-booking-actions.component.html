@@ -1,0 +1,42 @@
+<ng-template #titleTemplate>
+  <div class="flex w-full items-center justify-between py-4">
+    <cg-paragraph class="my-booking-actions--title">{{ "myBooking.detail.actions.title" | transloco }} </cg-paragraph>
+    <cg-icon class="h-4 w-4" [content]="accordionIcon" [ngClass]="{ expanded: expanded }"></cg-icon>
+  </div>
+</ng-template>
+
+<ng-template #contentTemplateDesktop>
+  <div class="h-[1px] w-full bg-cg-anthracite-light-80"></div>
+  <div class="mt-6 mb-4 flex flex-col justify-start gap-4 d:mt-4 d:mb-8 d:flex-row d:justify-between d:gap-12">
+    <button
+      cg-base-button
+      class="w-full"
+      [id]="'my-booking-edit-actions-change-appointment'"
+      [btnText]="'myBooking.detail.actions.changeAppointment' | transloco"
+      (click)="changeAppointment()"
+    ></button>
+    <button
+      cg-base-button
+      class="w-full"
+      [id]="'my-booking-edit-actions-remove-appointment'"
+      [btnText]="'myBooking.detail.actions.removeAppointment' | transloco"
+      (click)="cancelAppointment()"
+    ></button>
+  </div>
+  <cg-ccc-phone-info
+    class="mb-4"
+    phoneInfoTextKey="cccOpeningHours.byPhone.myBooking.detail"
+    [phoneNumber]="PhoneNumber.MY_BOOKING_DETAIL"
+  ></cg-ccc-phone-info>
+</ng-template>
+
+<cg-round-corner-tile>
+  <cg-expansion-panel
+    class="px-6 d:px-8"
+    data-cy="my-booking-actions"
+    [titleTemplate]="titleTemplate"
+    [contentTemplate]="contentTemplateDesktop"
+    [expanded]="expanded"
+    (accordionToggled)="accordionToggled()"
+  ></cg-expansion-panel>
+</cg-round-corner-tile>

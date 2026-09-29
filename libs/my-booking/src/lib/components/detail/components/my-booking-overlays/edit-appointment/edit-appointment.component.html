@@ -1,0 +1,56 @@
+<ng-template [ngIf]="appointmentData">
+  <ng-container *ngIf="hasSelectedAppointment">
+    <cg-drawer [content]="appointmentDetail" [footer]="appointmentDetailFooter" [showCloseIcon]="false"></cg-drawer>
+  </ng-container>
+
+  <ng-container *ngIf="!hasSelectedAppointment">
+    <cg-drawer
+      [headline]="appointmentListTitle"
+      [content]="appointmentList"
+      [footer]="appointmentListFooter"
+      [showCloseIcon]="false"
+    ></cg-drawer>
+  </ng-container>
+
+  <ng-template #appointmentListTitle>
+    <div class="pb-10">
+      <cg-olb-headline [title]="'myBooking.detail.overlays.editAppointmentTitle' | transloco"></cg-olb-headline>
+    </div>
+  </ng-template>
+
+  <ng-template #appointmentList>
+    <div class="-mt-8 t:-mt-6">
+      <form [formGroup]="form">
+        <cg-appointment-search
+          class="block w-full [&>div>form>div]:top-[5.5rem] [&>div>form>div]:z-20 [&>div>form>div]:pt-0 last:[&>div>form>div]:pb-0 t:[&>div>form>div]:top-[7.25rem] w:[&>div>form>div]:top-[7.75rem] [&>div>form>cg-appointment-list>div]:max-h-full [&>div>form>div>cg-appointment-filter>div]:mt-0"
+          [appointmentData]="appointmentData"
+        >
+        </cg-appointment-search>
+      </form>
+    </div>
+  </ng-template>
+
+  <ng-template #appointmentDetail>
+    <div class="mt-4">
+      <cg-appointment-detail [appointmentData]="appointmentData"></cg-appointment-detail>
+    </div>
+  </ng-template>
+</ng-template>
+
+<ng-template #appointmentListFooter>
+  <cg-overlay-footer
+    [hideSaveBtn]="true"
+    [hideCloseBtn]="true"
+    [customButtons]="calloutFooterButtons"
+    (customButtonClicked)="calloutClicked()"
+  ></cg-overlay-footer>
+</ng-template>
+
+<ng-template #appointmentDetailFooter>
+  <cg-overlay-footer
+    [customButtons]="detailFooterButtons"
+    (customButtonClicked)="goBackToAppointmentList()"
+    [hideCloseBtn]="true"
+    (submitButtonClicked)="saveForm()"
+  ></cg-overlay-footer>
+</ng-template>

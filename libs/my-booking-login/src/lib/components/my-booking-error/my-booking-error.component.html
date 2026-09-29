@@ -1,0 +1,28 @@
+<section
+  class="pb-13 mb-step-xs flex h-full flex-col items-center bg-cg-gray-light-70 px-4 pt-12"
+  [ngClass]="{ 'sm:m-main-mobile t:m-main-tablet d:m-main-desktop w:m-main-widescreen fhd:m-main-fullhd': isHuk }"
+>
+  <cg-headline [type]="'h2'" [content]="'myBooking.errorPage.loginNotPossible' | transloco"></cg-headline>
+  <div class="max-w-136 mx-auto mt-4 flex max-w-[544px] flex-col rounded-card bg-white p-6 text-left shadow-card">
+    <cg-headline [type]="'h3'" [content]="'myBooking.errorPage.followingReasons' | transloco"></cg-headline>
+    <ul class="mt-4 list-outside list-disc pl-8">
+      <li
+        class="my-booking-error--list-element"
+        *ngFor="let element of listElements"
+        [innerHTML]="element | transloco"
+      ></li>
+    </ul>
+    <button
+      cg-base-button
+      class="my-6 mx-auto w-full justify-center t:max-w-[229px]"
+      [btnText]="'myBooking.errorPage.buttonText' | transloco"
+      [iconPosition]="'left'"
+      (click)="navigateToLogin()"
+    ></button>
+    <div class="mb-6 h-[1px] bg-cg-gray-light-70"></div>
+    <cg-ccc-phone-info
+      phoneInfoTextKey="cccOpeningHours.byPhone.myBooking.error"
+      [phoneNumber]="PhoneNumber.MY_BOOKING_LOGIN"
+    ></cg-ccc-phone-info>
+  </div>
+</section>

@@ -1,0 +1,33 @@
+<cg-round-corner-tile>
+  <div class="px-6 py-4 d:px-8 d:py-6">
+    <cg-paragraph class="mb-4 block"
+      ><strong>{{ "myBooking.detail.additionalAppointmentDetails" | transloco }}</strong></cg-paragraph
+    >
+    <div class="h-[1px] w-full bg-cg-anthracite-light-80"></div>
+    <div class="flex flex-col gap-x-0 d:flex-row d:gap-x-[72px]">
+      <div class="flex-1">
+        <ng-container *ngFor="let contentCard of contentCardsPartsLeftColumn">
+          <cg-content-card class="d:[&>div>div]:last:pb-0" data-cs-mask [content]="contentCard"></cg-content-card>
+        </ng-container>
+      </div>
+      <div class="mr-[18px] flex-1">
+        <ng-container *ngFor="let contentCard of contentCardsRightColumn">
+          <cg-content-card
+            class="[&>div>div]:last:pb-0"
+            [content]="contentCard"
+            [contentUnderDescriptionTemplateRef]="contentCard.id === 'payment' ? paymentAdditionalContent : null"
+            [attr.data-pw-mask]="contentCard.id === 'damageDate' ? true : null"
+          >
+          </cg-content-card>
+        </ng-container>
+      </div>
+    </div>
+    <div></div>
+  </div>
+</cg-round-corner-tile>
+
+<ng-template #paymentAdditionalContent>
+  <div class="flex flex-wrap gap-2">
+    <cg-icon class="h-[50px] w-[50px]" *ngFor="let icon of paymentIcons" [content]="icon"></cg-icon>
+  </div>
+</ng-template>

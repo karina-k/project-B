@@ -1,0 +1,13 @@
+<cg-drawer [headline]="headline" [content]="content" [footer]="footer" [showCloseIcon]="false"></cg-drawer>
+
+<ng-template #headline>
+  <cg-olb-headline [title]="'myBooking.detail.overlays.customerAddressTitle' | transloco"> </cg-olb-headline>
+</ng-template>
+<ng-template #content>
+  <form class="mt-4" [formGroup]="form">
+    <cg-address-form [formControlName]="'customerAddress'"></cg-address-form>
+  </form>
+</ng-template>
+<ng-template #footer>
+  <cg-overlay-footer (submitButtonClicked)="saveForm()"></cg-overlay-footer>
+</ng-template>

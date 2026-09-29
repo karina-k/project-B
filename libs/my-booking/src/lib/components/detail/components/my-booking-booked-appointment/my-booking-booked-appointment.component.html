@@ -1,0 +1,61 @@
+<cg-round-corner-tile>
+  <div class="flex gap-14 px-6 py-4 d:px-8 d:py-6">
+    <div class="flex flex-[1_1_0] flex-col">
+      <ng-container *ngFor="let info of contentCards; let i = index">
+        <cg-content-card
+          class="[&>div>div]:first:pt-0 [&>div>div]:last:pb-0"
+          [content]="info"
+          [contentUnderSublineTemplateRef]="info.id === 'location' ? locationRoutePlanner : addToCalendar"
+          data-cs-mask
+        >
+        </cg-content-card>
+      </ng-container>
+    </div>
+    <div *ngIf="(isMobile$ | async) === false" class="w-0 flex-[1_1_0]">
+      <cg-google-maps
+        class="h-full [&>div]:h-full [&>div>google-map>.map-container]:!h-full"
+        [mapHeight]="'100%'"
+        [useOwnStyle]="false"
+        [zoom]="17"
+        [showMultipleServiceCenters]="false"
+        [infoWindowTemplateRef]="infoWindow"
+        data-cs-mask
+      ></cg-google-maps>
+    </div>
+  </div>
+</cg-round-corner-tile>
+
+<ng-template #locationRoutePlanner>
+  <a
+    class="text-cg-anthracite underline"
+    (click)="trackRoutePlaningEvent('text-link')"
+    href="{{ googleMapsRouteHref }}"
+    target="_blank"
+    data-cy="my-booking-booked-appointment-route-href"
+    >{{ "myBooking.detail.calculateRoute" | transloco }}</a
+  >
+</ng-template>
+
+<ng-template #addToCalendar>
+  <a
+    class="text-cg-anthracite underline"
+    (click)="trackCalendarEvent('my-booking/detail')"
+    href="{{ calendarHref }}"
+    target="_blank"
+    >{{ "appointmentConfirmation.ctas.calendar" | transloco }}</a
+  >
+</ng-template>
+
+<ng-template #infoWindow>
+  <strong>Booking<sup>®</sup> {{ customerCase.appointment.city }}</strong>
+  <br />
+  {{ customerCase.appointment.street }}<br />
+  {{ customerCase.appointment.postalCode }} {{ customerCase.appointment.city }}<br /><br />
+  <a
+    class="text-cg-anthracite underline"
+    (click)="trackRoutePlaningEvent('maps-link')"
+    href="{{ googleMapsRouteHref }}"
+    target="_blank"
+    >{{ "myBooking.detail.calculateRoute" | transloco }}</a
+  >
+</ng-template>

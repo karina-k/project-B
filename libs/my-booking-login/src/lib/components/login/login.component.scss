@@ -1,0 +1,7 @@
+@use "libs/core/ui/styles/functions/calcrem" as *;
+@use "libs/core/ui/styles/mixins/breakpoints" as *;
+@use "libs/core/ui/styles/variables/fonts" as fonts;
+
+:host {
+  @apply relative block h-full w-full bg-cg-white;
+}

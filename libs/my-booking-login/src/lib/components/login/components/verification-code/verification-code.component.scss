@@ -1,0 +1,7 @@
+:host {
+  .font-weight-400 {
+    ::ng-deep h1 {
+      @apply font-normal;
+    }
+  }
+}
